@@ -45,8 +45,8 @@ for i in data:
             # 'stars': repo.stargazers_count,
             # 'openIssues': len(list(repo.get_issues(state='open'))),
 
-            # 'stars': 400,
-            # 'openIssues': 26
+            'stars': 400,
+            'openIssues': 26
         }
     }
     data[mainCount].update(tempdir)
