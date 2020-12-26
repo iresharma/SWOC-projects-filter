@@ -137,4 +137,5 @@ def filteredData():
     return render_template('home.html', data=retdata, Stack=techStack, filter=techfilter)
 
 if __name__ == "__main__":
+    print(activating)
     app.run(debug=True)
