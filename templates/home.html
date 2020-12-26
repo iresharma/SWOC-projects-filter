@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block title %} SWOC Project | iresharma {% endblock
+%} {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'home.css') }}" />
+{% endblock %} {% block content %}
+<section class="hero is-dark is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Script - Winter Of Code projects compilation</h1>
+      <h2 class="subtitle">
+        The UX on the main website wasn't very user friendly so hey I made this
+      </h2>
+    </div>
+  </div>
+</section>
+<main>
+  {% if filter == None %}
+  <h1 class="is-size-1">Here's a list of projects</h1>
+  {% else %}
+  <h1 class="is-size-1">Here's a list of {{ filter }} projects</h1>
+  {% endif %}
+  <form action="/filter" method="POST" class="columns">
+    <div class="column">
+        <div class="select">
+            <select name="tech">
+              <option>Select dropdown</option>
+              {% for option in Stack %}
+                <option value="{{ option }}">{{ option }}</option>
+              {% endfor %}
+            </select>
+          </div>
+    </div>
+    <div class="column">
+        <button type="submit" class="button is-dark" >Filter</button>
+    </div>
+</form>
+  <br /><br />
+  <div class="columns is-multiline">
+    {% for project in data %}
+    <div class="column is-4 box">
+      <b class="is-size-5">
+        <a target="_blank" href="{{ project['Repo'] }}">
+          {{ project['Name'] }}
+        </a>
+      </b>
+      <h3 class="subtitle">{{ project['Owner'] }}</h3>
+      <p>{{ project['Description'] }}</p>
+      <br />
+      <img
+        src="https://img.shields.io/badge/stars-{{ project['gitStats']['stars'] }}-green"
+        alt="stars = project['gitStats']['stars']"
+      />
+      <img
+        src="https://img.shields.io/badge/issues-{{ project['gitStats']['openIssues'] }}-red"
+        alt="openIssues = {{project['gitStats']['openIssues']}}"
+      />&nbsp; <br /><br />
+      {% for tech in project['TechStack'] %}
+      <span class="tag {{ tech['color'] }}"><b>{{ tech['text'] }}</b></span>
+      {% endfor %}
+      <br /><br />
+      <a target="_blank" href="{{ project['profiles'][0]['github'] }}">
+        <img
+          src="https://github-readme-stats.vercel.app/api?username={{ project['gitUser'] }}&show_icons=true&line_height=40&count_private=true"
+          alt="Owner Git Stats"
+        />
+      </a>
+      <a
+        target="_blank"
+        href="{{ project['profiles'][0]['linkedin'] }}"
+        class="button is-info"
+        >linkedIn</a
+      >
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

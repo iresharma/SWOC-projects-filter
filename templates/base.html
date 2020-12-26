@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/3c178c2d41.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'font.css') }}">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'ProductSans';
+      }
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+<footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Script - Winter Of Code projects compilation</strong> by <a href="https://iresharma.me">Iresharma</a>.
+      </p>
+    </div>
+  </footer>
+</html>
