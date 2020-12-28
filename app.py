@@ -29,7 +29,93 @@ data = []
 
 
 # ? Tech Stack options
-# ['SQlite', 'Firebase', 'HTML', 'React JS', 'Flutter', 'JS', 'Deep Learning', 'Python', 'Django', 'Computer Vision', 'CSS']
+# ['JS',
+#  'StreamLit',
+#  'django',
+#  'Deep Learning',
+#  'C++',
+#  'Html',
+#  'Markdown',
+#  'NODE JS',
+#  'GANs',
+#  'Mongodb',
+#  'Angular8',
+#  'UI/UX',
+#  'Dart',
+#  'MERN',
+#  'js',
+#  'css',
+#  'Pytorch',
+#  'Tensorflow',
+#  'ReactJS',
+#  'Image Processing',
+#  'Web Application',
+#  'React',
+#  'GraphQL',
+#  'Monstack',
+#  'JavaScript',
+#  'Golang',
+#  'ReactJs',
+#  'BASH',
+#  'Data Science',
+#  'python',
+#  'PHP',
+#  'Docker',
+#  'NextJS',
+#  'CSS',
+#  'Reactjs',
+#  'Kotlin',
+#  'Computer Vision',
+#  'TensorFlow.JS',
+#  'Django',
+#  'Reinforcement Learning',
+#  'bootstrap5',
+#  'bootstrap',
+#  'Machine Learning',
+#  'Compiler Design',
+#  'ANN',
+#  'CSS3',
+#  'flask',
+#  'Bootstrap',
+#  'Firebase',
+#  'Flask',
+#  'OpenCV',
+#  'Algorithms',
+#  'Data Analysis',
+#  'TensorFlow',
+#  'VanillaJS',
+#  'Git',
+#  'Data Mocking',
+#  'Nodejs',
+#  'API',
+#  'Mangodb',
+#  'Expressjs',
+#  'GitHub Actions',
+#  'Flutter',
+#  'Express',
+#  'Javascript',
+#  'Python',
+#  'C',
+#  'MySql Database',
+#  'ML',
+#  'HTML',
+#  'Web Dev',
+#  'MaterialUI',
+#  'MySQL Database',
+#  'Python 3.x',
+#  'MongoDB',
+#  'Bootstrap4',
+#  'Java',
+#  'Vanilla JS',
+#  'ExpressJS',
+#  'Deep learning',
+#  'html',
+#  'NodeJS',
+#  'Node.js',
+#  'CNN',
+#  'GOFAI',
+#  'Bulma CSS',
+#  'HTML5']
 
 with open('./data.json', 'r') as projects:
     data = loads(projects.read())
@@ -53,32 +139,32 @@ for i in data:
     data[mainCount]['Description'] = data[mainCount]['Description'][0:400] + '...'
     for j in i['TechStack']:
         temp.append(j)
-        if j == 'SQlite':
+        if 'sql' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-info'
             }
-        elif j == 'Firebase':
+        elif 'firebase' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-warning'
             }
-        elif j == 'HTML':
+        elif 'hmtl' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-danger'
             }
-        elif j == 'React JS':
+        elif 'react' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-link'
             }
-        elif j == 'Flutter':
+        elif 'flutter' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-info'
             }
-        elif j == 'JS':
+        elif 'js' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-warning'
@@ -88,12 +174,12 @@ for i in data:
                 'text': j,
                 'color': 'is-dark'
             }
-        elif j == 'Python':
+        elif 'py' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-info'
             }
-        elif j == 'Django':
+        elif 'django' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-primary'
@@ -103,7 +189,7 @@ for i in data:
                 'text': j,
                 'color': 'is-black'
             }
-        elif j == 'CSS':
+        elif 'css' in j.lower() or 'docker' in j.lower():
             data[mainCount]['TechStack'][count] = {
                 'text': j,
                 'color': 'is-link'
@@ -137,5 +223,4 @@ def filteredData():
     return render_template('home.html', data=retdata, Stack=techStack, filter=techfilter)
 
 if __name__ == "__main__":
-    print(activating)
     app.run(debug=True)
