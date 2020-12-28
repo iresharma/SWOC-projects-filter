@@ -5,7 +5,7 @@ from github import Github
 import os
 from pprint import pprint
 
-gitObject = Github(os.environ['USER'], os.environ['PASS'])
+gitObject = Github(os.environ['ACCESSTOKEN'])
 
 app = Flask(__name__)
 CORS(app=app)
@@ -124,18 +124,25 @@ temp = []
 mainCount = 0
 for i in data:
     count = 0
-    # repo = gitObject.get_repo(i['Repo'].split('/')[len(i['Repo'].split('/')) - 2] + '/' + i['Repo'].split('/')[len(i['Repo'].split('/')) - 1])
-    tempdir = {
-        'gitUser': i['profiles'][0]['github'].split('/')[-1::][0],
-        'gitStats': {
-            # 'stars': repo.stargazers_count,
-            # 'openIssues': len(list(repo.get_issues(state='open'))),
+    try:
+        repo = gitObject.get_repo(i['Repo'].split('/')[len(i['Repo'].split('/')) - 2] + '/' + i['Repo'].split('/')[len(i['Repo'].split('/')) - 1])
+        print(i['Repo'].split('/')[len(i['Repo'].split('/')) - 2] + '/' + i['Repo'].split('/')[len(i['Repo'].split('/')) - 1])
+        tempdir = {
+            'git': True,
+            'gitUser': i['profiles'][0]['github'].split('/')[-1::][0],
+            'gitStats': {
+                'stars': repo.stargazers_count,
+                'openIssues': len(list(repo.get_issues(state='open'))),
 
-            'stars': 400,
-            'openIssues': 26
+                # 'stars': 400,
+                # 'openIssues': 26
+            }
         }
-    }
-    data[mainCount].update(tempdir)
+        data[mainCount].update(tempdir)
+    except Exception as e:
+        print(e)
+        data[mainCount].update({'git': False})
+        pass
     data[mainCount]['Description'] = data[mainCount]['Description'][0:400] + '...'
     for j in i['TechStack']:
         temp.append(j)

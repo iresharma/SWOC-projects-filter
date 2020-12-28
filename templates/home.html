@@ -46,15 +46,18 @@
       <p>{{ project['Description'] }}</p>
       <br />
 
-      <b>Having github issuses right now will be fixed soon</b>
+      {% if project['git'] %}
       <img
-        src="https://img.shields.io/badge/stars-{{ project['gitStats']['stars'] }}-green"
-        alt="stars = project['gitStats']['stars']"
+      src="https://img.shields.io/badge/stars-{{ project['gitStats']['stars'] }}-green"
+      alt="stars = project['gitStats']['stars']"
       />
       <img
-        src="https://img.shields.io/badge/issues-{{ project['gitStats']['openIssues'] }}-red"
-        alt="openIssues = {{project['gitStats']['openIssues']}}"
+      src="https://img.shields.io/badge/issues-{{ project['gitStats']['openIssues'] }}-red"
+      alt="openIssues = {{project['gitStats']['openIssues']}}"
       />&nbsp; <br /><br />
+      {% else %}
+      <b>Having github issuses right now will be fixed soon</b>
+      {% endif %}
       {% for tech in project['TechStack'] %}
       <span class="tag {{ tech['color'] }}"><b>{{ tech['text'] }}</b></span>
       {% endfor %}
